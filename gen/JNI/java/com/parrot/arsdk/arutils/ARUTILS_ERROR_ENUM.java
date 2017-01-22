@@ -53,6 +53,8 @@ public enum ARUTILS_ERROR_ENUM {
     ARUTILS_ERROR_BAD_PARAMETER (-998, "Bad parameters error"),
    /** System error */
     ARUTILS_ERROR_SYSTEM (-997, "System error"),
+   /** Function not implemented */
+    ARUTILS_ERROR_NOT_IMPLEMENTED (-996, "Function not implemented"),
    /** curl allocation error */
     ARUTILS_ERROR_CURL_ALLOC (-2000, "curl allocation error"),
    /** curl set option error */

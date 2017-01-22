@@ -225,6 +225,7 @@ eARUTILS_ERROR ARUTILS_FileSystem_RemoveDir(const char *localPath)
 
 eARUTILS_ERROR ARUTILS_FileSystem_GetFreeSpace(const char *localPath, double *freeSpace)
 {
+#ifndef _WIN32
     eARUTILS_ERROR result = ARUTILS_OK;
     struct statfs statfsData;
     double freeBytes = 0.f;
@@ -244,4 +245,8 @@ eARUTILS_ERROR ARUTILS_FileSystem_GetFreeSpace(const char *localPath, double *fr
 
     *freeSpace = freeBytes;
     return result;
+#else
+    ARSAL_PRINT(ARSAL_PRINT_WARNING, ARUTILS_FILE_SYSTEM_TAG, "ARUTILS_FileSystem_GetFreeSpace() not implemented on Windows");
+    return ARUTILS_ERROR_SYSTEM;
+#endif
 }

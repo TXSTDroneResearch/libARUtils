@@ -42,8 +42,33 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+
+#ifdef _WIN32
+/* HACK: Remove permissions that don't exist on Windows */
+#ifndef S_IRGRP
+#define S_IRGRP 0
+#endif
+
+#ifndef S_IWGRP
+#define S_IWGRP 0
+#endif
+
+#ifndef S_IROTH
+#define S_IROTH 0
+#endif
+#endif
+
+/* for SHUT_RDWR */
+#ifdef _WIN32
+#include <winsock2.h>
+#include <ws2tcpip.h>
+
+#define close closesocket
+#define SHUT_RDWR SD_BOTH
+#else
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#endif
 
 #include <libARSAL/ARSAL_Sem.h>
 #include <libARSAL/ARSAL_Print.h>

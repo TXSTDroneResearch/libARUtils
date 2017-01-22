@@ -59,6 +59,9 @@ const char* ARUTILS_Error_ToString (eARUTILS_ERROR error)
     case ARUTILS_ERROR_SYSTEM:
         return "System error";
         break;
+    case ARUTILS_ERROR_NOT_IMPLEMENTED:
+        return "Function not implemented";
+        break;
     case ARUTILS_ERROR_CURL_ALLOC:
         return "curl allocation error";
         break;

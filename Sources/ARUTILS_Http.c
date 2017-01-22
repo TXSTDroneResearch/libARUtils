@@ -51,6 +51,18 @@
 #include "libARUtils/ARUTILS_FileSystem.h"
 #include "ARUTILS_Http.h"
 
+/* for SHUT_RDWR */
+#ifdef _WIN32
+#include <winsock2.h>
+#include <ws2tcpip.h>
+
+#define close closesocket
+#define SHUT_RDWR SD_BOTH
+#else
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#endif
+
 #define ARUTILS_HTTP_TAG              "Http"
 
 #define ARUTILS_HTTP_LOW_SPEED_TIME   5
